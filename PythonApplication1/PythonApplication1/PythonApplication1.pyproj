@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>14eb96f3-8945-4586-ac24-e845fe14237e</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>..\..\..\..\Documents\GitHub\power-pro\shade_detector.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,13 +22,18 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="module1.py">
+    <Compile Include="detector_ball.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="module2.py">
+    <Compile Include="detector_shade.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="detector.py" />
+    <Compile Include="main.py" />
     <Compile Include="..\..\..\..\Documents\GitHub\power-pro\ball_detector.py" />
+    <Compile Include="video_analyzer.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="CondaEnv|CondaEnv|env" />

@@ -1,9 +1,13 @@
-filepath = 'douga\À‹µƒpƒƒtƒ‹ƒvƒ–ì‹…‚Q‚O‚P‚W_20200524161426.mp4'
+import video_analyzer
+import numpy as np
+import os
 
-# “®‰æƒtƒ@ƒCƒ‹•Û‘¶—p‚Ìİ’è
-fps = int(v.get(cv2.CAP_PROP_FPS))                                # “®‰æ‚ÌFPS‚ğæ“¾
-w = int(v.get(cv2.CAP_PROP_FRAME_WIDTH))                          # “®‰æ‚Ì‰¡•‚ğæ“¾
-h = int(v.get(cv2.CAP_PROP_FRAME_HEIGHT))                         # “®‰æ‚Ìc•‚ğæ“¾
-fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')                   # “®‰æ•Û‘¶‚Ìfourccİ’èimp4—pj
-video = cv2.VideoWriter('video_out.mp4', fourcc, fps, (w, h), True)
+filepath = 'douga\å®Ÿæ³ãƒ‘ãƒ¯ãƒ•ãƒ«ãƒ—ãƒ­é‡çƒï¼’ï¼ï¼‘ï¼˜_20200524161252.mp4'
+filename = os.path.basename(filepath)
+filename_withoutEx = os.path.splitext(filename)[0]
 
+shade, ball = video_analyzer.video_analyze(filepath)
+
+
+np.savetxt(filename_withoutEx + '_shade.txt', shade, fmt='%.5f', delimiter=',')
+np.savetxt(filename_withoutEx + '_ball.txt', ball, fmt='%.5f', delimiter=',')
