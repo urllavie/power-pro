@@ -26,8 +26,8 @@ class Detector_shade(detector.Detector):
         img_devalued = img_devalued | img_red_c1
         #二値化
         img_devalued2= img_devalued
-        img_devalued2[img_devalued < 180 ] = 0
-        img_devalued2[img_devalued >= 180 ] = 1
+        img_devalued2[img_devalued < 190 ] = 0
+        img_devalued2[img_devalued >= 190 ] = 1
         img_devalued2[img_devalued2 ==0 ] = 255
         img_devalued2[img_devalued2 ==1 ] = 0        
         
@@ -35,9 +35,12 @@ class Detector_shade(detector.Detector):
 
     #条件に合う輪郭を探す　オーバーライドする
     def condition_target(self, contour):
-        x, y, w, h = cv2.boundingRect(contour)
+        #x, y, w, h = cv2.boundingRect(contour)
+        center, radius = cv2.minEnclosingCircle(contour)
+        x = center[0]
+        y = center[1] 
         #描画する輪郭の条件
-        if y < 500 or x < 560 or x > 760:
+        if y < 630 or y > 690 or x < 560 or x > 760:
             return False
 
         return True

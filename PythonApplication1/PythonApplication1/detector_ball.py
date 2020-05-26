@@ -33,8 +33,10 @@ class Detector_ball(detector.Detector):
 
     #条件に合う輪郭を探す　オーバーライドする
     def condition_target(self, contour):
-        x, y, w, h = cv2.boundingRect(contour)
+        #x, y, w, h = cv2.boundingRect(contour)
         center, radius = cv2.minEnclosingCircle(contour)
+        x = center[0]
+        y = center[1]
         #描画する輪郭の条件
         if radius > 15 or radius < 6 or int(radius) == 14:
             return False

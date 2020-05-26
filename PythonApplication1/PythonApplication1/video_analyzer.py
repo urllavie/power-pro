@@ -4,6 +4,7 @@ import cv2
 import detector_shade
 import detector_ball
 import os
+import kido_analyzer
 
 def video_analyze(video_path):
 
@@ -27,17 +28,15 @@ def video_analyze(video_path):
         r, frame = v.read()
         if ( r == False ):
             break
-        video.write(frame)
-        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        kido = np.sum(np.array(frame))
-        if kido > 131400000:
+        kido = kido_analyzer.analyze(frame)
+        if kido > 1500000:
             break
-    #輝度が一定を超えて42フレームで解析を開始する
-    for i in range(42):
+    #輝度が一定を超えて20フレームで解析を開始する
+    for i in range(45):
         r, frame = v.read()
         if ( r == False ):
             break
-        video.write(frame)
+        
 
 
     #解析開始
@@ -74,21 +73,19 @@ def video_analyze(video_path):
             continue
 
         if r1 == True:
-            x, y, w, h = cv2.boundingRect(shade_contour)
             center, radius = cv2.minEnclosingCircle(shade_contour)
             if radius >= lradius_shade:
                 #輪郭の描画
                 cv2.circle(frame,(int(center[0]),int(center[1])), int(radius), (0,0,255), 2)
-                shadelist.append([nframe,x,y,radius])
+                shadelist.append([nframe,center[0],center[1],radius])
                 lradius_shade = radius
 
         if r2 == True:
-            x, y, w, h = cv2.boundingRect(ball_contour)
             center, radius = cv2.minEnclosingCircle(ball_contour)
             if radius >= lradius_ball:
                 #輪郭の描画
                 cv2.circle(frame,(int(center[0]),int(center[1])), int(radius), (0,255,0), 2)
-                balllist.append([nframe,x,y,radius])
+                balllist.append([nframe,center[0],center[1],radius])
                 lradius_ball = radius
 
         video.write(frame)

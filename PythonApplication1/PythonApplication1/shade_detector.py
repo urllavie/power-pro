@@ -66,8 +66,8 @@ while(v.isOpened()):
     test = test | img_red_c1
     #二値化
     test2= test
-    test2[test < 180 ] = 0
-    test2[test >= 180 ] = 1
+    test2[test < 200 ] = 0
+    test2[test >= 200 ] = 1
     test2[test2 ==0 ] = 255
     test2[test2 ==1 ] = 0
 
