@@ -1,5 +1,6 @@
 import detector
 import cv2
+import numpy as np
 
 class Detector_shade(detector.Detector):
 
@@ -26,10 +27,20 @@ class Detector_shade(detector.Detector):
         img_devalued = img_devalued | img_red_c1
         #二値化
         img_devalued2= img_devalued
-        img_devalued2[img_devalued < 190 ] = 0
-        img_devalued2[img_devalued >= 190 ] = 1
-        img_devalued2[img_devalued2 ==0 ] = 255
-        img_devalued2[img_devalued2 ==1 ] = 0        
+        img_devalued2[img_green_c1 > 160] = 0
+        kernel = np.ones((3,3))
+
+        img_devalued2[img_devalued2 < 190 ] = 0
+        img_devalued2[img_devalued2 >= 190 ] = 255
+        
+        img_devalued2 = cv2.dilate(img_devalued2, kernel)
+        #img_devalued2[img_devalued < 190 ] = 0
+        #img_devalued2[img_devalued >= 190 ] = 1
+        #img_devalued2[img_devalued2 ==0 ] = 255
+        #img_devalued2[img_devalued2 ==1 ] = 0        
+        #cv2.imshow("", img_devalued2)
+        #動画出力時間の調整
+        #cv2.waitKey(100)
         
         return img_devalued2
 

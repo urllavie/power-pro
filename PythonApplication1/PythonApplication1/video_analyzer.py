@@ -19,9 +19,9 @@ def video_analyze(video_path):
     w = int(v.get(cv2.CAP_PROP_FRAME_WIDTH))                          # 動画の横幅を取得
     h = int(v.get(cv2.CAP_PROP_FRAME_HEIGHT))                         # 動画の縦幅を取得
     fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')                   # 動画保存時のfourcc設定（mp4用）
-    video = cv2.VideoWriter(filename_withoutEx + '_out.mp4', fourcc, fps, (w, h), True)
+    video = cv2.VideoWriter('out\\' + filename_withoutEx + '_out.mp4', fourcc, fps, (w, h), True)
 
-
+    nframe = 0
     #解析開始条件
     #輝度が一定を超えてから一定フレームたってから開始    
     while(v.isOpened()):
@@ -30,9 +30,11 @@ def video_analyze(video_path):
             break
         kido = kido_analyzer.analyze(frame)
         if kido > 1500000:
+            if kido > 1700000:
+                nframe += 1
             break
     #輝度が一定を超えて20フレームで解析を開始する
-    for i in range(45):
+    for i in range(44):
         r, frame = v.read()
         if ( r == False ):
             break
@@ -42,7 +44,7 @@ def video_analyze(video_path):
     #解析開始
     shade_detector = detector_shade.Detector_shade()
     ball_detector = detector_ball.Detector_ball()
-    nframe = 0
+
     balllist=[]
     shadelist =[]
     kido = 0
@@ -50,7 +52,7 @@ def video_analyze(video_path):
     lradius_shade = 0
     lradius_ball = 0
     while(v.isOpened()):
-        nframe += 1
+        nframe += 2
         r, frame = v.read()
         if ( r == False ):
             break
