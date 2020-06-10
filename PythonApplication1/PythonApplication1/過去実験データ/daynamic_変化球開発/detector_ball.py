@@ -28,9 +28,7 @@ class Detector_ball(detector.Detector):
         img_devalued2= img_devalued
         img_devalued2[img_devalued < 180 ] = 0
         img_devalued2[img_devalued >= 180 ] = 255
-        #cv2.imshow("", img_devalued2)
-        #動画出力時間の調整
-        #cv2.waitKey(100)        
+        
         return img_devalued2
 
     #条件に合う輪郭を探す　オーバーライドする
@@ -42,7 +40,7 @@ class Detector_ball(detector.Detector):
         #描画する輪郭の条件
         if radius > 15 or radius < 6 or int(radius) == 14:
             return False
-        if x > 755 or x < 500 or y < 370:
+        if x > 755 or x < 560 or x == 690:
             return False
         return True
 

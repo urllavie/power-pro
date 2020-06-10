@@ -5,8 +5,6 @@ import detector_shade
 import detector_ball
 import os
 import kido_analyzer
-import speed_detector
-import pitch_type_detector
 
 def video_analyze(video_path):
 
@@ -24,22 +22,19 @@ def video_analyze(video_path):
     video = cv2.VideoWriter('out\\' + filename_withoutEx + '_out.mp4', fourcc, fps, (w, h), True)
 
     nframe = 0
-    lkido = 1000
     #解析開始条件
     #輝度が一定を超えてから一定フレームたってから開始    
     while(v.isOpened()):
         r, frame = v.read()
         if ( r == False ):
             break
-        kido = kido_analyzer.analyze(frame)        
-        if kido < 400 :
-            if lkido < 800:
+        kido = kido_analyzer.analyze(frame)
+        if kido > 1500000:
+            if kido > 1700000:
                 nframe += 1
             break
-        lkido = kido
-
     #輝度が一定を超えて44フレームで解析を開始する
-    for i in range(1):
+    for i in range(44):
         r, frame = v.read()
         if ( r == False ):
             break
@@ -64,19 +59,16 @@ def video_analyze(video_path):
 
         #終了条件　輝度解析
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        kido =  kido_analyzer.analyze(frame)
-        if kido > 400:
-            pd = pitch_type_detector.PitchTypeDetector()
-            sd = speed_detector.SpeedDetector()
-            ptt, pti = pd.detect(frame)
-            st, si = sd.detect(frame)
+        kido = np.sum(np.array(gray))
+        skido = kido/10 - lkido/10
+        if skido < -400000 /10:
             video.write(frame)
             break
+        lkido = kido
 
         #検出
         r1, shade_contour = shade_detector.detect(frame)
-        #r2, ball_contour = ball_detector.detect(frame)
-        r2 = False
+        r2, ball_contour = ball_detector.detect(frame)
 
         if r1 == False and r2 == False:
             video.write(frame)
@@ -102,12 +94,10 @@ def video_analyze(video_path):
 
     print(balllist)
     print(shadelist)
-    print(ptt)
-    print(st)
     v.release()
     cv2.destroyAllWindows()
 
-    return shadelist, balllist,ptt,st
+    return shadelist, balllist
 
 
 
