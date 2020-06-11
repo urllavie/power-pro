@@ -102,7 +102,7 @@ class SpeedDetector:
         elif speed.startswith('E', 0) or speed=='os' or speed == '3.':
             return '3'
         elif speed.startswith('u', 0) or speed == 'A' or speed == 'cs' or speed == 'cf' \
-            or speed == '“':
+            or speed == '“' or speed == 'cH':
             return '4'
         elif speed == '=)' or speed == '3}':
             return '5'

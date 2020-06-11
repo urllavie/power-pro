@@ -17,6 +17,7 @@ def video_tester(video_path):
         if ( r == False ):
             return
         kd = kido_analyzer.analyze(frame)
+        print(kd)
 
 
 

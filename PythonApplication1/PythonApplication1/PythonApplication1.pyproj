@@ -22,12 +22,6 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="daynamic_変化球開発\detector.py" />
-    <Compile Include="daynamic_変化球開発\detector_ball.py" />
-    <Compile Include="daynamic_変化球開発\detector_shade.py" />
-    <Compile Include="daynamic_変化球開発\kido_analyzer.py" />
-    <Compile Include="daynamic_変化球開発\main.py" />
-    <Compile Include="daynamic_変化球開発\video_analyzer.py" />
     <Compile Include="detector_ball.py">
       <SubType>Code</SubType>
     </Compile>
@@ -40,10 +34,10 @@
     <Compile Include="kido_analyzer.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="module3.py">
+    <Compile Include="tester1.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="module4.py">
+    <Compile Include="tester2.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ocr.py" />
@@ -55,9 +49,6 @@
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="CondaEnv|CondaEnv|env" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="daynamic_変化球開発\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

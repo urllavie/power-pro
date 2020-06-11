@@ -32,7 +32,7 @@ def video_analyze(video_path):
         if ( r == False ):
             break
         kido = kido_analyzer.analyze(frame)        
-        if kido < 400 :
+        if kido < 500 :
             if lkido < 800:
                 nframe += 1
             break
@@ -100,6 +100,9 @@ def video_analyze(video_path):
 
         video.write(frame)
 
+
+    r, frame = v.read()
+    video.write(frame)
     print(balllist)
     print(shadelist)
     print(ptt)
