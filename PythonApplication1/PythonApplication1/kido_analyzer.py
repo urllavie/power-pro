@@ -39,7 +39,7 @@ def analyze(frame1):
     #y1 = 625
     #w1 = 125
     #h1 = 30
-    #frame1 = cv2.rectangle(frame1, (x1, y1), (x1 + w1, y1 + h1), (0, 255, 0), 2)
+    #frame1 = cv2.rectangle(frame1, (x, y), (x + w, y + h), (0, 255, 0), 2)
     #cv2.imshow("", frame1)
     #cv2.waitKey(100)
     

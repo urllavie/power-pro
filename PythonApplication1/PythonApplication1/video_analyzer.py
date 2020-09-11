@@ -7,6 +7,8 @@ import os
 import kido_analyzer
 import speed_detector
 import pitch_type_detector
+import pitcher_name_detector
+
 
 def video_analyze(video_path):
 
@@ -31,21 +33,10 @@ def video_analyze(video_path):
         r, frame = v.read()
         if ( r == False ):
             break
-        kido = kido_analyzer.analyze(frame)        
-        if kido < 500 :
-            if lkido < 800:
-                nframe += 1
-            break
-        lkido = kido
-
-    #輝度が一定を超えて44フレームで解析を開始する
-    for i in range(1):
-        r, frame = v.read()
-        if ( r == False ):
+        kido = kido_analyzer.analyze(frame)    
+        if kido < 200 :
             break
         
-
-
     #解析開始
     shade_detector = detector_shade.Detector_shade()
     ball_detector = detector_ball.Detector_ball()
@@ -57,7 +48,7 @@ def video_analyze(video_path):
     lradius_shade = 0
     lradius_ball = 0
     while(v.isOpened()):
-        nframe += 2
+        nframe += 1
         r, frame = v.read()
         if ( r == False ):
             break
@@ -68,15 +59,18 @@ def video_analyze(video_path):
         if kido > 400:
             pd = pitch_type_detector.PitchTypeDetector()
             sd = speed_detector.SpeedDetector()
+            pnd = pitcher_name_detector.PitcherNameDetector()
             ptt, pti = pd.detect(frame)
             st, si = sd.detect(frame)
+            pn, pni = pnd.detect(frame)
             video.write(frame)
             break
 
         #検出
         r1, shade_contour = shade_detector.detect(frame)
-        #r2, ball_contour = ball_detector.detect(frame)
-        r2 = False
+        r2, ball_contour = ball_detector.detect(frame)
+        #r2 = False
+
 
         if r1 == False and r2 == False:
             video.write(frame)
@@ -92,25 +86,39 @@ def video_analyze(video_path):
 
         if r2 == True:
             center, radius = cv2.minEnclosingCircle(ball_contour)
-            if radius >= lradius_ball:
-                #輪郭の描画
-                cv2.circle(frame,(int(center[0]),int(center[1])), int(radius), (0,255,0), 2)
-                balllist.append([nframe,center[0],center[1],radius])
-                lradius_ball = radius
 
+            #輪郭の描画
+            cv2.circle(frame,(int(center[0]),int(center[1])), int(radius), (0,255,0), 2)
+            balllist.append([nframe,center[0],center[1],radius])
+
+        #cv2.imshow("", frame)
+        #cv2.waitKey(100)     
         video.write(frame)
 
 
     r, frame = v.read()
     video.write(frame)
-    print(balllist)
-    print(shadelist)
-    print(ptt)
-    print(st)
+    #print(balllist)
+    #print(shadelist)
+    try:
+        print(ptt)
+    except:
+        ptt = None
+        
+    try:
+        print(st)
+    except:
+        st = None
+
+    try:
+        print(pn)
+    except:
+        pn = None
+        
     v.release()
     cv2.destroyAllWindows()
 
-    return shadelist, balllist,ptt,st
+    return shadelist, balllist,ptt,st,pn
 
 
 

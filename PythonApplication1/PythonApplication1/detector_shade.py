@@ -29,7 +29,7 @@ class Detector_shade(detector.Detector):
         y = 630
         w = 95
         h = 15
-        frame1 = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+        #frame1 = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
         img_red_c1[y:y + h, x :x +w][img_red_c1[y:y + h, x :x +w] < 100] = 255 
         img_red_c1[y:y + h, x :x +w][img_red_c1[y:y + h, x :x +w] < 200] = 10 
         img_green_c1[y:y + h, x :x +w][img_red_c1[y:y + h, x :x +w] < 200] = 10 
@@ -38,7 +38,7 @@ class Detector_shade(detector.Detector):
         y = 645
         w = 20
         h = 10
-        frame1 = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+        #frame1 = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
         img_red_c1[y:y + h, x :x +w][img_red_c1[y:y + h, x :x +w] < 100] = 255 
         img_red_c1[y:y + h, x :x +w][img_red_c1[y:y + h, x :x +w] < 200] = 10 
         img_green_c1[y:y + h, x :x +w][img_red_c1[y:y + h, x :x +w] < 200] = 10 

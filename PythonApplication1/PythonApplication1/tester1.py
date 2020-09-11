@@ -7,7 +7,9 @@ import kido_analyzer
 np.set_printoptions(threshold=np.inf)
 th = 0
 th2 = 30
-v = cv2.VideoCapture('douga\実況パワフルプロ野球２０１８_20200531135150.mp4')
+#v = cv2.VideoCapture('C:\\Users\\url_l\\Desktop\\パワプロ投球解析\\PythonApplication1\\PythonApplication1\\douga - コピー\パワプロ2020 - 投球解析 - 2020-08-23 16-24-41-00.mp4')
+v = cv2.VideoCapture('C:\\Users\\url_l\\Desktop\\パワプロ投球解析\\rowdata\\パワプロ2020 - 投球解析 - 2020-08-24 12-58-52.mp4')
+
 
 xlist=[]
 ylist=[]
@@ -39,10 +41,11 @@ while(v.isOpened()):
     if ( r == False ):
         break
     kido = kido_analyzer.analyze(frame)
-    kidolist.append(kido)
+    print(kido)
+    #kidolist.append(kido)
     #動画出力時間の調整
 
-    video.write(frame)
+    #video.write(frame)
 
 
 
@@ -52,6 +55,6 @@ while(v.isOpened()):
 #print(rlist)
 #print(wlist)
 #print(hlist)
-print(kidolist)
+#print(kidolist)
 v.release()
 cv2.destroyAllWindows()

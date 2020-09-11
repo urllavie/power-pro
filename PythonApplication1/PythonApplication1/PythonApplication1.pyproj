@@ -30,10 +30,10 @@
     </Compile>
     <Compile Include="detector.py" />
     <Compile Include="main.py" />
-    <Compile Include="..\..\..\..\Documents\GitHub\power-pro\ball_detector.py" />
     <Compile Include="kido_analyzer.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="pitcher_name_detector.py" />
     <Compile Include="tester1.py">
       <SubType>Code</SubType>
     </Compile>
