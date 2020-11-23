@@ -5,9 +5,9 @@ import Common.C_frame
 import os
 import shutil
 
-inputDir = "C:\\Users\\url_l\\Desktop\\パワプロ投球解析\\input\\"
-outputDir = "C:\\Users\\url_l\\Desktop\\パワプロ投球解析\\output\\"
-rowdataDir = "C:\\Users\\url_l\\Desktop\\パワプロ投球解析\\rowdata\\"
+inputDir = "C:\\Users\\url_l\\Documents\\GitHub\\power-pro\\pawapro\\input\\"
+outputDir = "C:\\Users\\url_l\\Documents\\GitHub\\power-pro\\pawapro\\output\\"
+rowdataDir = "C:\\Users\\url_l\\Documents\\GitHub\\power-pro\\pawapro\\rowdata\\"
 
 filelist = glob.glob(inputDir + "*.mp4")
 

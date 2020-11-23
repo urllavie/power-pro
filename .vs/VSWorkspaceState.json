@@ -1,9 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\pawaproAnalysis",
-    "\\pawaproAnalysis\\pawaproAnalysis"
+    "\\pawapro",
+    "\\pawapro\\pawapro",
+    "\\pawapro\\Pitching_Analyzer",
+    "\\pawapro\\Pitching_Analyzer\\Common",
+    "\\PythonApplication1\\PythonApplication1"
   ],
-  "SelectedNode": "\\pawaproAnalysis\\pawaproAnalysis\\main.py",
+  "SelectedNode": "\\pawapro\\Pitching_Analyzer\\Common\\C_frame.py",
   "PreviewInSolutionExplorer": false
 }

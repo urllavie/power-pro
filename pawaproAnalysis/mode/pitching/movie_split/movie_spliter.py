@@ -9,11 +9,11 @@ class Movie_spliter:
 		self.dir_splited = dir_splited
 		self.kido_analyzer = Kido_analyzer(580, 450, 125, 130)
 		self.kido_border = 500
-		self.n_file = 0
 
 		
 
 	def split(self, movie):
+		n_file = 0
 
 		v = cv2.VideoCapture(movie.file_path)
 		write_flag = False
@@ -31,8 +31,8 @@ class Movie_spliter:
 			#print(strike_zone.red)
 
 			if write_flag == False and frame.red < self.kido_border:
-				self.n_file += 1
-				movie_splited = Movie_splited(self.dir_splited, movie, v, self.n_file)
+				n_file += 1
+				movie_splited = Movie_splited(self.dir_splited, movie, v, n_file)
 				print(movie_splited.file_path)
 				write_flag = True
 
